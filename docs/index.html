@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuMint - Wikipedia, the free encyclopedia</title>
+    <title>DocuMint Documentation - Universal Document Automation Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,14 +33,6 @@
             text-decoration: none;
         }
         a.wiki-link:hover {
-            color: #0645ad;
-            text-decoration: underline;
-        }
-        a.wiki-ext {
-            color: #3366cc;
-            text-decoration: none;
-        }
-        a.wiki-ext:hover {
             color: #0645ad;
             text-decoration: underline;
         }
@@ -89,7 +81,7 @@
         }
         @media (min-width: 1024px) {
             .infobox {
-                width: 320px;
+                width: 330px;
                 float: right;
                 margin: 0 0 1.25rem 1.75rem;
             }
@@ -102,18 +94,6 @@
             padding: 8px;
             font-family: 'IBM Plex Serif', Georgia, serif;
             border-bottom: 1px solid #a2a9b1;
-        }
-        .infobox-subheader {
-            background-color: #f0f2f5;
-            text-align: center;
-            font-weight: 600;
-            font-size: 11.5px;
-            padding: 4px;
-            border-top: 1px solid #c8ccd1;
-            border-bottom: 1px solid #c8ccd1;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #54595d;
         }
         .infobox td, .infobox th {
             padding: 5px 9px;
@@ -165,52 +145,46 @@
 </head>
 <body class="bg-white text-[#202122] font-sans antialiased">
 
-    <!-- Top MediaWiki Global Bar -->
-    <header class="border-b border-[#a2a9b1] bg-[#f8f9fa]">
+    <!-- Top Wiki-Style Documentation Header -->
+    <header class="border-b border-[#a2a9b1] bg-[#f8f9fa] sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <a href="#top" class="flex items-center gap-2.5 text-inherit no-underline">
-                    <div class="w-8 h-8 rounded bg-[#2a4b8d] text-white font-serif font-bold text-lg flex items-center justify-center border border-[#1e3563]">
-                        W
+                    <div class="w-8 h-8 rounded bg-[#202122] text-white font-mono font-bold text-sm flex items-center justify-center border border-[#101418]">
+                        D
                     </div>
                     <div>
-                        <div class="font-serif font-bold text-sm tracking-tight text-[#202122] leading-none">Wikipedia</div>
-                        <div class="text-[11px] text-[#54595d] leading-tight">The Free Encyclopedia</div>
+                        <div class="font-serif font-bold text-base tracking-tight text-[#202122] leading-none">DocuMint Wiki</div>
+                        <div class="text-[11px] text-[#54595d] leading-tight font-sans">Engineering Documentation & Knowledgebase</div>
                     </div>
                 </a>
-            </div>
-
-            <!-- Wikipedia Search Bar Mockup -->
-            <div class="hidden sm:flex items-center flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <input type="text" value="DocuMint (software)" readonly class="w-full pl-8 pr-4 py-1.5 bg-white border border-[#a2a9b1] rounded text-xs text-[#202122] focus:outline-none cursor-default font-sans">
-                    <svg class="w-3.5 h-3.5 absolute left-2.5 top-2 text-[#54595d] fill-current" viewBox="0 0 24 24"><path d="M10 2a8 8 0 015.293 14.008l5.35 5.35a1 1 0 01-1.414 1.414l-5.35-5.35A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/></svg>
-                </div>
             </div>
 
             <!-- Header Quick Actions -->
             <div class="flex items-center gap-4 text-xs font-sans">
                 <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5 fill-current text-[#202122]" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    <span>View Repository</span>
+                    <span>GitHub Repository</span>
                 </a>
-                <a href="https://zihadhasan.web.app/" target="_blank" class="hidden md:inline-flex px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition">
+                <a href="https://zihadhasan.web.app/" target="_blank" class="hidden sm:inline-flex px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition">
                     Developer Platform
                 </a>
             </div>
         </div>
 
-        <!-- Wikipedia Action Tabs Bar -->
+        <!-- Wiki Action Tabs Bar -->
         <div class="border-t border-[#c8ccd1] bg-white">
             <div class="max-w-7xl mx-auto px-4 flex items-center justify-between text-xs">
                 <div class="flex items-center gap-6">
-                    <span class="py-2 border-b-2 border-[#3366cc] font-bold text-[#202122]">Article</span>
-                    <span class="py-2 text-[#54595d] hover:text-[#202122] cursor-pointer">Talk</span>
+                    <span class="py-2 border-b-2 border-[#3366cc] font-bold text-[#202122]">Documentation</span>
+                    <a href="#interactive-workbench" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Live Workbench</a>
+                    <a href="#architecture" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Architecture</a>
+                    <a href="#implementation" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Python API</a>
                 </div>
                 <div class="hidden md:flex items-center gap-6 text-[#54595d]">
                     <span class="py-2 text-[#202122] font-medium">Read</span>
-                    <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">View source</a>
-                    <a href="https://github.com/zihaaaad/DocuMint/commits/master" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">View history</a>
+                    <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">View Source</a>
+                    <a href="https://github.com/zihaaaad/DocuMint/commits/master" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">Changelog</a>
                 </div>
             </div>
         </div>
@@ -219,10 +193,10 @@
     <!-- Main Container -->
     <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="top">
 
-        <!-- Left Navigation Sidebar (Vector 2022 TOC) -->
+        <!-- Left Navigation Sidebar (Wiki TOC) -->
         <aside class="hidden lg:block lg:col-span-3 sticky top-28 space-y-4 text-xs pr-4 border-r border-[#eaecf0]">
             <div class="font-bold text-sm text-[#202122] pb-2 border-b border-[#c8ccd1]">
-                Contents <span class="text-[11px] font-normal text-[#54595d] cursor-pointer">[hide]</span>
+                Contents
             </div>
             <ul class="space-y-2 text-[#54595d]">
                 <li><a href="#top" class="wiki-link text-[#202122] font-medium">(Top)</a></li>
@@ -249,13 +223,13 @@
                 <li><a href="#comparison" class="wiki-link">5 Comparative Analysis Matrix</a></li>
                 <li><a href="#benchmarks" class="wiki-link">6 Empirical Benchmarks & Performance</a></li>
                 <li><a href="#implementation" class="wiki-link">7 Implementation and Python API</a></li>
-                <li><a href="#references" class="wiki-link">8 See Also and References</a></li>
+                <li><a href="#references" class="wiki-link">8 References and Links</a></li>
             </ul>
 
             <div class="pt-6 border-t border-[#c8ccd1] text-[11px] text-[#54595d] space-y-1 font-sans">
                 <div>Lead Architect: <strong class="text-[#202122]">Zihad Hasan</strong></div>
                 <div>License: <strong class="text-[#202122]">MIT License</strong></div>
-                <div>Status: <span class="text-emerald-700 font-semibold">Stable Release (v3.0.0)</span></div>
+                <div>Status: <span class="text-emerald-700 font-semibold">Production Ready (v3.0.0)</span></div>
             </div>
         </aside>
 
@@ -265,21 +239,21 @@
             <!-- Article Title -->
             <div class="pb-2 mb-3 border-b border-[#a2a9b1]">
                 <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#000000] tracking-tight">DocuMint</h1>
-                <div class="text-xs text-[#54595d] mt-1 font-serif italic">From Wikipedia, the free encyclopedia</div>
+                <div class="text-xs text-[#54595d] mt-1 font-sans">Universal Local Document Compilation and Batch Dispatch Platform</div>
             </div>
 
             <div class="hatnote">
-                This article is about the open-source document automation and batch dispatch engine. For other uses of document minting, see Document processing.
+                This technical document describes the architecture, algorithms, and operational specifications of DocuMint, an open-source Python document generation system.
             </div>
 
-            <!-- Authentic Wikipedia Infobox -->
+            <!-- Structured Project Infobox -->
             <table class="infobox">
                 <tr>
                     <th colspan="2" class="infobox-header">DocuMint</th>
                 </tr>
                 <tr>
                     <td colspan="2" class="p-3 text-center bg-white border-b border-[#c8ccd1]">
-                        <div class="inline-block px-3 py-1 bg-[#eaecf0] border border-[#a2a9b1] text-xs font-mono font-bold text-[#2a4b8d] rounded">
+                        <div class="inline-block px-3 py-1 bg-[#eaecf0] border border-[#a2a9b1] text-xs font-mono font-bold text-[#202122] rounded">
                             documint-v3.0.0
                         </div>
                         <div class="text-[11px] text-[#54595d] mt-1 font-sans">Universal Local Document Pipeline</div>
@@ -290,16 +264,12 @@
                     <td><a href="https://github.com/zihaaaad" target="_blank" class="wiki-link">Zihad Hasan</a></td>
                 </tr>
                 <tr>
-                    <th scope="row">Developer(s)</th>
-                    <td><a href="https://github.com/zihaaaad" target="_blank" class="wiki-link">Zihad Hasan</a>, open-source contributors</td>
-                </tr>
-                <tr>
                     <th scope="row">Initial release</th>
                     <td>2026</td>
                 </tr>
                 <tr>
                     <th scope="row">Stable release</th>
-                    <td><strong>3.0.0</strong> / September 2026</td>
+                    <td><strong>3.0.0</strong> (September 2026)</td>
                 </tr>
                 <tr>
                     <th scope="row">Repository</th>
@@ -307,7 +277,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Written in</th>
-                    <td><a href="https://www.python.org/" target="_blank" class="wiki-link">Python 3.10+</a> (Flask, python-docx, pandas, pywin32)</td>
+                    <td><a href="https://www.python.org/" target="_blank" class="wiki-link">Python 3.10+</a> (Flask, python-docx, pandas, win32com)</td>
                 </tr>
                 <tr>
                     <th scope="row">Operating system</th>
@@ -333,16 +303,16 @@
 
             <!-- Lead Paragraph -->
             <p class="mb-4">
-                <strong>DocuMint</strong> is a local-first, open-source batch document compilation and multi-channel dispatch engine written in Python by Bangladeshi software engineer <a href="https://github.com/zihaaaad" class="wiki-link">Zihad Hasan</a><a href="#ref-1" class="ref-mark">[1]</a>. Engineered as an automated alternative to legacy Microsoft Word Mail Merge tools and commercial software-as-a-service (SaaS) APIs, DocuMint merges tabular datasets (<a href="https://en.wikipedia.org/wiki/Microsoft_Excel" class="wiki-link">Excel</a> and <a href="https://en.wikipedia.org/wiki/Comma-separated_values" class="wiki-link">CSV</a>) with formatted Word documents (<code class="text-xs font-mono bg-[#eaecf0] px-1 py-0.5 rounded">.docx</code>), compiles high-fidelity vector PDF files, and executes concurrent asynchronous email delivery with transactional SQLite audit logging<a href="#ref-2" class="ref-mark">[2]</a>.
+                <strong>DocuMint</strong> is an open-source, local-first batch document compilation and multi-channel dispatch engine written in Python by software engineer <a href="https://github.com/zihaaaad" class="wiki-link">Zihad Hasan</a><a href="#ref-1" class="ref-mark">[1]</a>. Designed as an automated alternative to legacy Microsoft Word Mail Merge tools and commercial software-as-a-service (SaaS) APIs, DocuMint merges tabular datasets (Excel and CSV) with formatted Word documents (<code class="text-xs font-mono bg-[#eaecf0] px-1 py-0.5 rounded">.docx</code>), compiles high-fidelity vector PDF files, and executes concurrent asynchronous email delivery with transactional SQLite audit logging<a href="#ref-2" class="ref-mark">[2]</a>.
             </p>
 
             <p class="mb-4">
-                Unlike cloud-based document generation systems (such as DocuSign, PandaDoc, or Zapier plugins) that require uploading confidential student grades, employee payroll figures, or patient medical identifiers to third-party multi-tenant servers, DocuMint operates 100% locally on the host machine. This architecture eliminates cloud data exposure, satisfying the strictest regulatory compliance frameworks, including the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation" class="wiki-link">General Data Protection Regulation (GDPR)</a>, <a href="https://en.wikipedia.org/wiki/Family_Educational_Rights_and_Privacy_Act" class="wiki-link">FERPA</a>, and <a href="https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act" class="wiki-link">HIPAA</a><a href="#ref-3" class="ref-mark">[3]</a>.
+                Unlike cloud-based document generation systems (such as DocuSign, PandaDoc, or Zapier plugins) that require uploading confidential student grades, employee payroll figures, or patient medical identifiers to third-party multi-tenant servers, DocuMint operates 100% locally on host hardware. This architecture eliminates cloud data exposure, satisfying strict regulatory compliance frameworks, including GDPR, FERPA, and HIPAA<a href="#ref-3" class="ref-mark">[3]</a>.
             </p>
 
             <!-- Inline Mobile / Tablet TOC Box -->
             <div class="toc-box lg:hidden">
-                <div class="font-bold text-sm text-[#202122] mb-2 pb-1 border-b border-[#a2a9b1]">Contents <span class="text-[11px] font-normal text-[#54595d]">[hide]</span></div>
+                <div class="font-bold text-sm text-[#202122] mb-2 pb-1 border-b border-[#a2a9b1]">Contents</div>
                 <ul class="space-y-1 text-xs text-[#54595d]">
                     <li><a href="#background" class="wiki-link">1 Background and Problem Statement</a></li>
                     <li><a href="#architecture" class="wiki-link">2 Architecture and Subsystems</a></li>
@@ -351,7 +321,7 @@
                     <li><a href="#comparison" class="wiki-link">5 Comparative Analysis Matrix</a></li>
                     <li><a href="#benchmarks" class="wiki-link">6 Empirical Benchmarks & Performance</a></li>
                     <li><a href="#implementation" class="wiki-link">7 Implementation and Python API</a></li>
-                    <li><a href="#references" class="wiki-link">8 See Also and References</a></li>
+                    <li><a href="#references" class="wiki-link">8 References and Links</a></li>
                 </ul>
             </div>
 
@@ -381,7 +351,7 @@
 
             <h3 id="template-engine" class="subsection-heading">2.1 Run-Preserving OpenXML Engine</h3>
             <p class="mb-3">
-                Under the <a href="https://en.wikipedia.org/wiki/Office_Open_XML" class="wiki-link">Office Open XML</a> specification (<code class="text-xs font-mono">.docx</code>), paragraphs are structured as collections of granular <code class="text-xs font-mono">&lt;w:r&gt;</code> run nodes. Traditional string replacement algorithms replace raw <code class="text-xs font-mono">paragraph.text</code> directly, discarding all run containers and stripping bold, italic, font family, and RGB color properties.
+                Under the Office Open XML specification (<code class="text-xs font-mono">.docx</code>), paragraphs are structured as collections of granular <code class="text-xs font-mono">&lt;w:r&gt;</code> run nodes. Traditional string replacement algorithms replace raw <code class="text-xs font-mono">paragraph.text</code> directly, discarding all run containers and stripping bold, italic, font family, and RGB color properties.
             </p>
             <p class="mb-3">
                 DocuMint implements a two-pass run replacement algorithm:
@@ -418,7 +388,7 @@
                 The live sandbox below demonstrates DocuMint's dynamic merge evaluation in real time. Select a spreadsheet record from the dataset table on the left to observe dynamic vector document compilation on the right.
             </p>
 
-            <!-- Interactive Workbench Box (Clean White & Black Wikipedia UI) -->
+            <!-- Interactive Workbench Box -->
             <div class="border border-[#a2a9b1] bg-[#f8f9fa] rounded p-5 my-6">
                 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-4 border-b border-[#c8ccd1]">
@@ -714,7 +684,7 @@ sender.send_email(
 )</code></pre>
 
             <!-- Section 8: References -->
-            <h2 id="references" class="section-heading">8 See Also and References</h2>
+            <h2 id="references" class="section-heading">8 References and Links</h2>
             <ol class="list-decimal pl-6 space-y-1.5 text-xs text-[#54595d] mb-12">
                 <li id="ref-1">
                     Hasan, Zihad (2026). "DocuMint Source Code and System Documentation". <em>GitHub Repository</em>. Available at: <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="wiki-link">github.com/zihaaaad/DocuMint</a>.
@@ -723,19 +693,19 @@ sender.send_email(
                     Hasan, Zihad (2026). "Engineering Specifications for Local-First Document Automation". <em>Developer Platform</em>. Available at: <a href="https://zihadhasan.web.app/" target="_blank" class="wiki-link">zihadhasan.web.app</a>.
                 </li>
                 <li id="ref-3">
-                    DocuMint Architectural Specifications (2026). "Zero Cloud Leakage and Local-First Pipeline Design". <em>DocuMint Project Knowledgebase</em>. Available at: <a href="https://zihaaaad.github.io/DocuMint/" class="wiki-link">zihaaaad.github.io/DocuMint</a>.
+                    DocuMint Architectural Specifications (2026). "Zero Cloud Leakage and Local-First Pipeline Design". <em>DocuMint Project Documentation</em>. Available at: <a href="https://zihaaaad.github.io/DocuMint/" class="wiki-link">zihaaaad.github.io/DocuMint</a>.
                 </li>
             </ol>
 
         </main>
     </div>
 
-    <!-- Authentic Wikipedia Footer -->
+    <!-- Clean Wiki Footer -->
     <footer class="border-t border-[#c8ccd1] bg-[#f8f9fa] py-8 text-xs text-[#54595d]">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
-                <div>This page was last edited on 9 September 2026, at 13:45 (UTC).</div>
-                <div class="mt-0.5">Text is available under the <a href="https://github.com/zihaaaad/DocuMint/blob/master/LICENSE" target="_blank" class="wiki-link">MIT License</a>; additional terms may apply. Engineered by <a href="https://github.com/zihaaaad" target="_blank" class="wiki-link font-medium">Zihad Hasan</a>.</div>
+                <div>DocuMint Engineering Documentation · Open-source under the <a href="https://github.com/zihaaaad/DocuMint/blob/master/LICENSE" target="_blank" class="wiki-link">MIT License</a>.</div>
+                <div class="mt-0.5">Authored and maintained by <a href="https://github.com/zihaaaad" target="_blank" class="wiki-link font-medium">Zihad Hasan</a>.</div>
             </div>
             <div class="flex items-center gap-6">
                 <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="wiki-link">GitHub</a>
