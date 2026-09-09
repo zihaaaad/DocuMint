@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "documint"
-version = "2.0.0"
-description = "Universal Document Generation and Automation Tool"
+version = "3.0.0"
+description = "Universal Document Automation & Batch Dispatch Engine in Python (Excel/Word to PDF, Multi-Threaded SMTP/Outlook Dispatch, Local SQLite Analytics)"
 authors = [
   { name="Zihad Hasan", email="pkmzihad@gmail.com" },
 ]
