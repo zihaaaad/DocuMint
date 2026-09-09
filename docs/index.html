@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocuMint Documentation - Universal Document Automation Engine</title>
+    <meta name="description" content="Comprehensive engineering documentation for DocuMint: Open-source local document automation, OpenXML template engine, vector PDF compiler, and multi-threaded mail dispatcher in Python.">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Inter', 'Helvetica', 'Arial', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
                         serif: ['"IBM Plex Serif"', 'Georgia', 'Cambria', '"Times New Roman"', 'serif'],
-                        mono: ['"JetBrains Mono"', '"Courier New"', 'monospace']
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace']
                     }
                 }
             }
@@ -26,11 +33,14 @@
             color: #202122;
             background-color: #ffffff;
             font-size: 14.5px;
-            line-height: 1.65;
+            line-height: 1.68;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         a.wiki-link {
             color: #3366cc;
             text-decoration: none;
+            transition: color 0.15s ease;
         }
         a.wiki-link:hover {
             color: #0645ad;
@@ -39,8 +49,6 @@
         .wiki-table {
             border-collapse: collapse;
             width: 100%;
-            margin: 1.25rem 0;
-            border: 1px solid #a2a9b1;
             font-size: 13.5px;
         }
         .wiki-table th {
@@ -49,10 +57,12 @@
             padding: 8px 12px;
             text-align: left;
             font-weight: 600;
+            color: #202122;
         }
         .wiki-table td {
             border: 1px solid #c8ccd1;
             padding: 8px 12px;
+            color: #202122;
         }
         .wiki-table tr:nth-child(even) td {
             background-color: #f8f9fa;
@@ -96,9 +106,10 @@
             border-bottom: 1px solid #a2a9b1;
         }
         .infobox td, .infobox th {
-            padding: 5px 9px;
+            padding: 6px 10px;
             vertical-align: top;
             border-bottom: 1px solid #e1e4e8;
+            word-break: break-word;
         }
         .infobox th {
             text-align: left;
@@ -118,53 +129,62 @@
             border: 1px solid #a2a9b1;
             background-color: #f8f9fa;
             padding: 12px 18px;
-            display: table;
             font-size: 13px;
             margin: 1.25rem 0 1.75rem 0;
-            border-radius: 2px;
+            border-radius: 4px;
         }
         .section-heading {
             font-family: 'IBM Plex Serif', Georgia, serif;
             border-bottom: 1px solid #a2a9b1;
-            padding-bottom: 3px;
-            margin-top: 2.25rem;
-            margin-bottom: 0.85rem;
+            padding-bottom: 4px;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
             font-weight: 600;
-            font-size: 1.55rem;
+            font-size: clamp(1.4rem, 3.5vw, 1.65rem);
             color: #000000;
+            letter-spacing: -0.015em;
         }
         .subsection-heading {
             font-family: 'IBM Plex Serif', Georgia, serif;
-            margin-top: 1.4rem;
-            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: clamp(1.15rem, 2.8vw, 1.25rem);
             color: #000000;
+            letter-spacing: -0.01em;
+        }
+        /* Custom scrollbar hiding utility */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 <body class="bg-white text-[#202122] font-sans antialiased">
 
     <!-- Top Wiki-Style Documentation Header -->
-    <header class="border-b border-[#a2a9b1] bg-[#f8f9fa] sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="#top" class="flex items-center gap-2.5 text-inherit no-underline">
-                    <div class="w-8 h-8 rounded bg-[#202122] text-white font-mono font-bold text-sm flex items-center justify-center border border-[#101418]">
+    <header class="border-b border-[#a2a9b1] bg-[#f8f9fa] sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+                <a href="#top" class="flex items-center gap-2.5 text-inherit no-underline min-w-0">
+                    <div class="w-8 h-8 rounded bg-[#202122] text-white font-mono font-bold text-sm flex items-center justify-center border border-[#101418] flex-shrink-0">
                         D
                     </div>
-                    <div>
-                        <div class="font-serif font-bold text-base tracking-tight text-[#202122] leading-none">DocuMint Wiki</div>
-                        <div class="text-[11px] text-[#54595d] leading-tight font-sans">Engineering Documentation & Knowledgebase</div>
+                    <div class="min-w-0 truncate">
+                        <div class="font-serif font-bold text-base tracking-tight text-[#202122] leading-none truncate">DocuMint Wiki</div>
+                        <div class="text-[11px] text-[#54595d] leading-tight font-sans truncate hidden sm:block">Engineering Documentation & Knowledgebase</div>
                     </div>
                 </a>
             </div>
 
             <!-- Header Quick Actions -->
-            <div class="flex items-center gap-4 text-xs font-sans">
-                <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5 fill-current text-[#202122]" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    <span>GitHub Repository</span>
+            <div class="flex items-center gap-2 sm:gap-4 text-xs font-sans flex-shrink-0">
+                <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="px-2.5 sm:px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 fill-current text-[#202122] flex-shrink-0" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>GitHub</span>
                 </a>
                 <a href="https://zihadhasan.web.app/" target="_blank" class="hidden sm:inline-flex px-3 py-1.5 rounded border border-[#a2a9b1] bg-white hover:bg-[#eaecf0] text-[#202122] font-medium transition">
                     Developer Platform
@@ -173,25 +193,26 @@
         </div>
 
         <!-- Wiki Action Tabs Bar -->
-        <div class="border-t border-[#c8ccd1] bg-white">
-            <div class="max-w-7xl mx-auto px-4 flex items-center justify-between text-xs">
-                <div class="flex items-center gap-6">
-                    <span class="py-2 border-b-2 border-[#3366cc] font-bold text-[#202122]">Documentation</span>
+        <div class="border-t border-[#c8ccd1] bg-white overflow-x-auto no-scrollbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs whitespace-nowrap">
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#top" class="py-2 border-b-2 border-[#3366cc] font-bold text-[#202122] no-underline">Documentation</a>
                     <a href="#interactive-workbench" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Live Workbench</a>
                     <a href="#architecture" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Architecture</a>
                     <a href="#implementation" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Python API</a>
+                    <a href="#benchmarks" class="py-2 text-[#54595d] hover:text-[#202122] no-underline">Benchmarks</a>
                 </div>
                 <div class="hidden md:flex items-center gap-6 text-[#54595d]">
                     <span class="py-2 text-[#202122] font-medium">Read</span>
                     <a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">View Source</a>
-                    <a href="https://github.com/zihaaaad/DocuMint/commits/master" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">Changelog</a>
+                    <a href="https://github.com/zihaaaad/DocuMint/releases" target="_blank" class="py-2 text-inherit hover:text-[#3366cc] no-underline">v3.0.0 Release</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Container -->
-    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="top">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="top">
 
         <!-- Left Navigation Sidebar (Wiki TOC) -->
         <aside class="hidden lg:block lg:col-span-3 sticky top-28 space-y-4 text-xs pr-4 border-r border-[#eaecf0]">
@@ -234,12 +255,12 @@
         </aside>
 
         <!-- Main Article Body -->
-        <main class="lg:col-span-9">
+        <main class="lg:col-span-9 min-w-0">
 
             <!-- Article Title -->
             <div class="pb-2 mb-3 border-b border-[#a2a9b1]">
                 <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#000000] tracking-tight">DocuMint</h1>
-                <div class="text-xs text-[#54595d] mt-1 font-sans">Universal Local Document Compilation and Batch Dispatch Platform</div>
+                <div class="text-xs text-[#54595d] mt-1 font-sans">Universal Document Automation & Batch Dispatch Engine in Python (Excel/Word to PDF, Multi-Threaded SMTP/Outlook Dispatch, Local SQLite Analytics)</div>
             </div>
 
             <div class="hatnote">
@@ -247,59 +268,61 @@
             </div>
 
             <!-- Structured Project Infobox -->
-            <table class="infobox">
-                <tr>
-                    <th colspan="2" class="infobox-header">DocuMint</th>
-                </tr>
-                <tr>
-                    <td colspan="2" class="p-3 text-center bg-white border-b border-[#c8ccd1]">
-                        <div class="inline-block px-3 py-1 bg-[#eaecf0] border border-[#a2a9b1] text-xs font-mono font-bold text-[#202122] rounded">
-                            documint-v3.0.0
-                        </div>
-                        <div class="text-[11px] text-[#54595d] mt-1 font-sans">Universal Local Document Pipeline</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Original author</th>
-                    <td><a href="https://github.com/zihaaaad" target="_blank" class="wiki-link">Zihad Hasan</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">Initial release</th>
-                    <td>2026</td>
-                </tr>
-                <tr>
-                    <th scope="row">Stable release</th>
-                    <td><strong>3.0.0</strong> (September 2026)</td>
-                </tr>
-                <tr>
-                    <th scope="row">Repository</th>
-                    <td><a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="wiki-link font-mono text-xs">zihaaaad/DocuMint</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">Written in</th>
-                    <td><a href="https://www.python.org/" target="_blank" class="wiki-link">Python 3.10+</a> (Flask, python-docx, pandas, win32com)</td>
-                </tr>
-                <tr>
-                    <th scope="row">Operating system</th>
-                    <td>Universal (<a href="#pdf-converter" class="wiki-link">Windows, Linux, macOS</a>)</td>
-                </tr>
-                <tr>
-                    <th scope="row">Platform</th>
-                    <td>Local-first (0% Cloud PII Transmission)</td>
-                </tr>
-                <tr>
-                    <th scope="row">Type</th>
-                    <td>Batch Document Generator, PDF Compiler, Mail Dispatcher</td>
-                </tr>
-                <tr>
-                    <th scope="row">License</th>
-                    <td><a href="https://github.com/zihaaaad/DocuMint/blob/master/LICENSE" target="_blank" class="wiki-link">MIT License</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">Website</th>
-                    <td><a href="https://zihaaaad.github.io/DocuMint/" class="wiki-link">zihaaaad.github.io/DocuMint</a></td>
-                </tr>
-            </table>
+            <div class="infobox rounded overflow-hidden my-4 lg:my-0 shadow-sm">
+                <table class="w-full">
+                    <tr>
+                        <th colspan="2" class="infobox-header">DocuMint</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="p-3 text-center bg-white border-b border-[#c8ccd1]">
+                            <div class="inline-block px-3 py-1 bg-[#eaecf0] border border-[#a2a9b1] text-xs font-mono font-bold text-[#202122] rounded">
+                                documint-v3.0.0
+                            </div>
+                            <div class="text-[11px] text-[#54595d] mt-1 font-sans">Universal Local Document Pipeline</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Original author</th>
+                        <td><a href="https://github.com/zihaaaad" target="_blank" class="wiki-link">Zihad Hasan</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Initial release</th>
+                        <td>2026</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Stable release</th>
+                        <td><strong>3.0.0</strong> (September 2026)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Repository</th>
+                        <td><a href="https://github.com/zihaaaad/DocuMint" target="_blank" class="wiki-link font-mono text-xs">zihaaaad/DocuMint</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Written in</th>
+                        <td><a href="https://www.python.org/" target="_blank" class="wiki-link">Python 3.10+</a> (Flask, python-docx, pandas, win32com)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Operating system</th>
+                        <td>Universal (<a href="#pdf-converter" class="wiki-link">Windows, Linux, macOS</a>)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Platform</th>
+                        <td>Local-first (0% Cloud PII Transmission)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Type</th>
+                        <td>Batch Document Generator, PDF Compiler, Mail Dispatcher</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">License</th>
+                        <td><a href="https://github.com/zihaaaad/DocuMint/blob/master/LICENSE" target="_blank" class="wiki-link">MIT License</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Website</th>
+                        <td><a href="https://zihaaaad.github.io/DocuMint/" class="wiki-link">zihaaaad.github.io/DocuMint</a></td>
+                    </tr>
+                </table>
+            </div>
 
             <!-- Lead Paragraph -->
             <p class="mb-4">
@@ -389,16 +412,16 @@
             </p>
 
             <!-- Interactive Workbench Box -->
-            <div class="border border-[#a2a9b1] bg-[#f8f9fa] rounded p-5 my-6">
+            <div class="border border-[#a2a9b1] bg-[#f8f9fa] rounded p-3 sm:p-5 my-6">
                 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-4 border-b border-[#c8ccd1]">
                     <div class="font-bold text-sm text-[#202122] flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block flex-shrink-0"></span>
                         <span>Evaluation Canvas: Live Document Workbench</span>
                     </div>
                     
                     <!-- Template Selector Tabs -->
-                    <div class="flex items-center gap-1 text-xs">
+                    <div class="flex items-center flex-wrap gap-1.5 text-xs">
                         <button onclick="switchWikiTemplate('cert')" id="wTabCert" class="px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition">
                             Academic Certificate
                         </button>
@@ -414,13 +437,13 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     
                     <!-- Left: Dataset Grid & Parameters -->
-                    <div class="lg:col-span-6 space-y-4">
+                    <div class="lg:col-span-5 xl:col-span-6 space-y-4 min-w-0">
                         
                         <!-- Dataset Table -->
                         <div class="border border-[#a2a9b1] bg-white rounded overflow-hidden shadow-sm">
                             <div class="bg-[#eaecf0] px-3 py-1.5 border-b border-[#a2a9b1] flex justify-between items-center text-xs font-mono font-semibold text-[#202122]">
-                                <span>Input Dataset: <span id="wDatasetName">students.xlsx</span></span>
-                                <span class="text-[11px] text-[#54595d] font-normal">Click a row to load</span>
+                                <span class="truncate">Input Dataset: <span id="wDatasetName">students.xlsx</span></span>
+                                <span class="text-[11px] text-[#54595d] font-normal flex-shrink-0 ml-2">Click a row to load</span>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="w-full text-xs text-left">
@@ -441,34 +464,34 @@
                         </div>
 
                         <!-- Parameter Form -->
-                        <div class="bg-white border border-[#a2a9b1] rounded p-4 space-y-3 text-xs">
+                        <div class="bg-white border border-[#a2a9b1] rounded p-3.5 sm:p-4 space-y-3 text-xs shadow-sm">
                             <div class="flex justify-between items-center pb-2 border-b border-[#eaecf0]">
                                 <span class="font-bold text-[#202122] font-mono text-[11px] uppercase tracking-wider">Active Record Ingestion</span>
                                 <span class="text-[#54595d] font-mono text-[11px]" id="wActiveIndicator">Row #1</span>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block font-semibold text-[#202122] mb-1" id="wLabel1">&lt;Student_Name&gt;</label>
+                                    <label class="block font-semibold text-[#202122] mb-1 truncate" id="wLabel1">&lt;Student_Name&gt;</label>
                                     <input id="wInput1" type="text" oninput="handleWikiInput()" class="w-full px-2.5 py-1.5 bg-white border border-[#a2a9b1] rounded text-[#202122] font-mono text-xs focus:border-[#3366cc] focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block font-semibold text-[#202122] mb-1" id="wLabel2">&lt;Course_Title&gt;</label>
+                                    <label class="block font-semibold text-[#202122] mb-1 truncate" id="wLabel2">&lt;Course_Title&gt;</label>
                                     <input id="wInput2" type="text" oninput="handleWikiInput()" class="w-full px-2.5 py-1.5 bg-white border border-[#a2a9b1] rounded text-[#202122] font-mono text-xs focus:border-[#3366cc] focus:outline-none">
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-3 gap-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div>
-                                    <label class="block font-semibold text-[#202122] mb-1" id="wLabel3">&lt;Roll_No&gt;</label>
+                                    <label class="block font-semibold text-[#202122] mb-1 truncate" id="wLabel3">&lt;Roll_No&gt;</label>
                                     <input id="wInput3" type="text" oninput="handleWikiInput()" class="w-full px-2.5 py-1.5 bg-white border border-[#a2a9b1] rounded text-[#202122] font-mono text-xs focus:border-[#3366cc] focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block font-semibold text-[#202122] mb-1" id="wLabel4">&lt;Grade&gt;</label>
+                                    <label class="block font-semibold text-[#202122] mb-1 truncate" id="wLabel4">&lt;Grade&gt;</label>
                                     <input id="wInput4" type="text" oninput="handleWikiInput()" class="w-full px-2.5 py-1.5 bg-white border border-[#a2a9b1] rounded text-[#202122] font-mono text-xs focus:border-[#3366cc] focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block font-semibold text-[#202122] mb-1">&lt;Issued_Date&gt;</label>
+                                    <label class="block font-semibold text-[#202122] mb-1 truncate">&lt;Issued_Date&gt;</label>
                                     <input id="wInput5" type="text" oninput="handleWikiInput()" class="w-full px-2.5 py-1.5 bg-white border border-[#a2a9b1] rounded text-[#202122] font-mono text-xs focus:border-[#3366cc] focus:outline-none">
                                 </div>
                             </div>
@@ -477,18 +500,18 @@
                     </div>
 
                     <!-- Right: Dynamic Document Canvas -->
-                    <div class="lg:col-span-7 bg-white border border-[#a2a9b1] rounded p-6 shadow-sm">
-                        <div class="text-[11px] font-mono uppercase text-[#54595d] pb-2 mb-4 border-b border-[#eaecf0] flex justify-between">
+                    <div class="lg:col-span-7 xl:col-span-6 bg-white border border-[#a2a9b1] rounded p-4 sm:p-6 shadow-sm min-w-0">
+                        <div class="text-[11px] font-mono uppercase text-[#54595d] pb-2 mb-4 border-b border-[#eaecf0] flex flex-wrap justify-between gap-1">
                             <span>Compiled Document Buffer (Vector PDF Output)</span>
                             <span class="text-emerald-700 font-bold">Integrity: Verified</span>
                         </div>
 
                         <!-- Rendered Canvas -->
-                        <div id="wCanvas" class="transition-all">
+                        <div id="wCanvas" class="transition-all min-w-0 overflow-hidden">
                             <!-- Injected dynamically -->
                         </div>
 
-                        <div class="flex justify-between items-center text-[10.5px] font-mono text-[#54595d] pt-4 border-t border-[#eaecf0] mt-4">
+                        <div class="flex flex-wrap justify-between items-center text-[10.5px] font-mono text-[#54595d] pt-4 border-t border-[#eaecf0] mt-4 gap-2">
                             <span id="wHash">SHA-256: 4f8b...e109</span>
                             <span>Parser Latency: 4.2ms</span>
                         </div>
@@ -544,54 +567,56 @@
                 The matrix below contrasts DocuMint with traditional Microsoft Word Mail Merge and commercial cloud-based document automation platforms:
             </p>
 
-            <table class="wiki-table">
-                <thead>
-                    <tr>
-                        <th>Metric / Capability</th>
-                        <th>DocuMint</th>
-                        <th>MS Word Mail Merge</th>
-                        <th>Cloud Document SaaS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Data Confidentiality</strong></td>
-                        <td>100% Local (Zero cloud transmission)</td>
-                        <td>Local</td>
-                        <td>Transmitted to multi-tenant servers</td>
-                    </tr>
-                    <tr>
-                        <td><strong>PDF Compilation</strong></td>
-                        <td>Multi-Tier (COM / docx2pdf / LibreOffice)</td>
-                        <td>Manual print to PDF per document</td>
-                        <td>Proprietary cloud rendering</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Automated Dispatch</strong></td>
-                        <td>Multi-threaded SMTP and Outlook automation</td>
-                        <td>Limited single-thread Outlook only</td>
-                        <td>API rate-limited / Paid credit tiers</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Variable Syntax</strong></td>
-                        <td>Angle brackets, Jinja mustache, square brackets</td>
-                        <td>Word merge fields only</td>
-                        <td>Custom template tags</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Audit & Telemetry</strong></td>
-                        <td>Persistent SQLite history database</td>
-                        <td>None</td>
-                        <td>Remote cloud analytics</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Licensing & Cost</strong></td>
-                        <td>Open-source (MIT License)</td>
-                        <td>Commercial Office License required</td>
-                        <td>Per-document recurring subscription</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-x-auto my-4 border border-[#a2a9b1] rounded shadow-sm">
+                <table class="wiki-table my-0 border-0">
+                    <thead>
+                        <tr>
+                            <th>Metric / Capability</th>
+                            <th>DocuMint</th>
+                            <th>MS Word Mail Merge</th>
+                            <th>Cloud Document SaaS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Confidentiality</strong></td>
+                            <td>100% Local (Zero cloud transmission)</td>
+                            <td>Local</td>
+                            <td>Transmitted to multi-tenant servers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PDF Compilation</strong></td>
+                            <td>Multi-Tier (COM / docx2pdf / LibreOffice)</td>
+                            <td>Manual print to PDF per document</td>
+                            <td>Proprietary cloud rendering</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automated Dispatch</strong></td>
+                            <td>Multi-threaded SMTP and Outlook automation</td>
+                            <td>Limited single-thread Outlook only</td>
+                            <td>API rate-limited / Paid credit tiers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Variable Syntax</strong></td>
+                            <td>Angle brackets, Jinja mustache, square brackets</td>
+                            <td>Word merge fields only</td>
+                            <td>Custom template tags</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Audit & Telemetry</strong></td>
+                            <td>Persistent SQLite history database</td>
+                            <td>None</td>
+                            <td>Remote cloud analytics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Licensing & Cost</strong></td>
+                            <td>Open-source (MIT License)</td>
+                            <td>Commercial Office License required</td>
+                            <td>Per-document recurring subscription</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Section 6: Empirical Benchmarks -->
             <h2 id="benchmarks" class="section-heading">6 Empirical Benchmarks & Performance</h2>
@@ -599,42 +624,44 @@
                 Benchmarking conducted on standard workstation hardware (Intel Core i7-13700K, 32GB RAM, Windows 11 / Ubuntu 22.04 LTS):
             </p>
 
-            <table class="wiki-table">
-                <thead>
-                    <tr>
-                        <th>Subsystem Component</th>
-                        <th>Throughput / Latency</th>
-                        <th>Memory Footprint (RSS)</th>
-                        <th>Standard Deviation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>OpenXML In-Memory Parser</strong></td>
-                        <td>120.4 documents / second</td>
-                        <td>42 MB</td>
-                        <td>±1.8 ms</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Microsoft Word COM PDF Engine</strong></td>
-                        <td>0.42 seconds / document</td>
-                        <td>118 MB</td>
-                        <td>±0.04 s</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Headless LibreOffice CLI Engine</strong></td>
-                        <td>0.68 seconds / document</td>
-                        <td>145 MB</td>
-                        <td>±0.06 s</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Parallel SMTP Dispatcher (10 Threads)</strong></td>
-                        <td>45.2 emails / second</td>
-                        <td>28 MB</td>
-                        <td>±2.1 ms</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-x-auto my-4 border border-[#a2a9b1] rounded shadow-sm">
+                <table class="wiki-table my-0 border-0">
+                    <thead>
+                        <tr>
+                            <th>Subsystem Component</th>
+                            <th>Throughput / Latency</th>
+                            <th>Memory Footprint (RSS)</th>
+                            <th>Standard Deviation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>OpenXML In-Memory Parser</strong></td>
+                            <td>120.4 documents / second</td>
+                            <td>42 MB</td>
+                            <td>±1.8 ms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Word COM PDF Engine</strong></td>
+                            <td>0.42 seconds / document</td>
+                            <td>118 MB</td>
+                            <td>±0.04 s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Headless LibreOffice CLI Engine</strong></td>
+                            <td>0.68 seconds / document</td>
+                            <td>145 MB</td>
+                            <td>±0.06 s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parallel SMTP Dispatcher (10 Threads)</strong></td>
+                            <td>45.2 emails / second</td>
+                            <td>28 MB</td>
+                            <td>±2.1 ms</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Section 7: Implementation and Python API -->
             <h2 id="implementation" class="section-heading">7 Implementation and Python API</h2>
@@ -642,7 +669,7 @@
                 DocuMint is distributed as a modular Python package and local web execution studio.
             </p>
 
-            <pre class="bg-[#f8f9fa] border border-[#a2a9b1] rounded p-3.5 text-xs font-mono text-[#202122] overflow-x-auto mb-4"><code>from documint.core import (
+            <pre class="bg-[#f8f9fa] border border-[#a2a9b1] rounded p-3.5 text-xs font-mono text-[#202122] overflow-x-auto mb-4 shadow-sm"><code>from documint.core import (
     validate_placeholders,
     replace_placeholders_in_doc,
     UniversalDocumentConverter,
@@ -679,7 +706,7 @@ sender = SmtpEmailSender(
 sender.send_email(
     to_email="student@institution.edu",
     subject="Official Academic Certificate",
-    body_html="&lt;p&gt;Dear Zihad,&lt;br&gt;Your certificate is attached.&lt;/p&gt;",
+    body_html="<p>Dear Zihad,<br>Your certificate is attached.</p>",
     attachments=["Zihad_Certificate.pdf"]
 )</code></pre>
 
@@ -702,8 +729,8 @@ sender.send_email(
 
     <!-- Clean Wiki Footer -->
     <footer class="border-t border-[#c8ccd1] bg-[#f8f9fa] py-8 text-xs text-[#54595d]">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
                 <div>DocuMint Engineering Documentation · Open-source under the <a href="https://github.com/zihaaaad/DocuMint/blob/master/LICENSE" target="_blank" class="wiki-link">MIT License</a>.</div>
                 <div class="mt-0.5">Authored and maintained by <a href="https://github.com/zihaaaad" target="_blank" class="wiki-link font-medium">Zihad Hasan</a>.</div>
             </div>
@@ -730,27 +757,27 @@ sender.send_email(
                 ],
                 render: function(d) {
                     return `
-                        <div class="border-2 border-[#202122] p-6 rounded bg-white text-center space-y-4 font-serif">
-                            <div class="border-b border-[#202122] pb-3">
-                                <div class="font-bold text-base tracking-wide text-[#202122] uppercase">AS-SUNNAH SKILL DEVELOPMENT INSTITUTE</div>
-                                <div class="text-[11px] font-sans text-[#54595d] tracking-widest uppercase mt-0.5">Affiliated with As-Sunnah Foundation</div>
+                        <div class="border-2 border-[#202122] p-4 sm:p-6 rounded bg-white text-center space-y-3 sm:space-y-4 font-serif">
+                            <div class="border-b border-[#202122] pb-2.5">
+                                <div class="font-bold text-xs sm:text-sm tracking-wide text-[#202122] uppercase">AS-SUNNAH SKILL DEVELOPMENT INSTITUTE</div>
+                                <div class="text-[10px] sm:text-[11px] font-sans text-[#54595d] tracking-wider uppercase mt-0.5">Affiliated with As-Sunnah Foundation</div>
                             </div>
-                            <div class="py-2">
-                                <div class="text-xs font-sans text-[#54595d] tracking-wider uppercase mb-1">Certificate of Academic Merit</div>
-                                <div class="text-2xl font-bold text-[#202122] tracking-tight">${d.f1}</div>
-                                <div class="text-xs text-[#54595d] font-mono mt-1">Registration: ${d.f3}</div>
+                            <div class="py-1 sm:py-2">
+                                <div class="text-[10px] sm:text-xs font-sans text-[#54595d] tracking-wider uppercase mb-1">Certificate of Academic Merit</div>
+                                <div class="text-lg sm:text-2xl font-bold text-[#202122] tracking-tight">${d.f1}</div>
+                                <div class="text-[11px] text-[#54595d] font-mono mt-0.5">Registration: ${d.f3}</div>
                             </div>
-                            <p class="text-xs font-sans leading-relaxed text-[#202122] max-w-md mx-auto">
+                            <p class="text-[11px] sm:text-xs font-sans leading-relaxed text-[#202122] max-w-md mx-auto">
                                 This credential certifies that the candidate has successfully satisfied all graduation requirements in <strong>${d.f2}</strong>, earning the honor grade of <strong>${d.f4}</strong>.
                             </p>
-                            <div class="pt-4 border-t border-[#c8ccd1] flex justify-between items-end text-[11px] font-sans text-[#54595d]">
+                            <div class="pt-3 sm:pt-4 border-t border-[#c8ccd1] flex justify-between items-end text-[10px] sm:text-[11px] font-sans text-[#54595d] gap-2">
                                 <div class="text-left">
-                                    <div class="font-mono text-[10px]">Date: ${d.f5}</div>
-                                    <div class="font-mono text-[10px]">Status: Verified (Valid)</div>
+                                    <div class="font-mono text-[9.5px] sm:text-[10px]">Date: ${d.f5}</div>
+                                    <div class="font-mono text-[9.5px] sm:text-[10px] text-emerald-800 font-semibold">Status: Verified (Valid)</div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="w-24 border-b border-[#202122] mb-1"></div>
-                                    <div class="font-semibold text-[#202122] text-[10px]">Authorized Registrar</div>
+                                    <div class="w-20 sm:w-24 border-b border-[#202122] mb-1 ml-auto"></div>
+                                    <div class="font-semibold text-[#202122] text-[9.5px] sm:text-[10px]">Authorized Registrar</div>
                                 </div>
                             </div>
                         </div>
@@ -768,17 +795,17 @@ sender.send_email(
                 ],
                 render: function(d) {
                     return `
-                        <div class="border border-[#202122] p-5 rounded bg-white font-sans text-xs space-y-4">
-                            <div class="flex justify-between items-start border-b border-[#202122] pb-3">
+                        <div class="border border-[#202122] p-4 sm:p-5 rounded bg-white font-sans text-xs space-y-3 sm:space-y-4">
+                            <div class="flex justify-between items-start border-b border-[#202122] pb-2.5 gap-2">
                                 <div>
-                                    <div class="font-bold text-sm text-[#202122] uppercase">OFFICIAL EXAMINATION ADMIT CARD</div>
+                                    <div class="font-bold text-xs sm:text-sm text-[#202122] uppercase">OFFICIAL EXAMINATION ADMIT CARD</div>
                                     <div class="text-[10px] text-[#54595d] uppercase">Board of Academic Examinations</div>
                                 </div>
-                                <div class="text-right font-mono text-[10px] font-bold text-[#202122]">
+                                <div class="text-right font-mono text-[10px] font-bold text-[#202122] flex-shrink-0">
                                     ${d.f3}
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-3 bg-[#f8f9fa] p-3 rounded border border-[#c8ccd1] text-[11px]">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 bg-[#f8f9fa] p-2.5 sm:p-3 rounded border border-[#c8ccd1] text-[11px]">
                                 <div><span class="text-[#54595d]">Candidate:</span> <strong class="text-[#202122]">${d.f1}</strong></div>
                                 <div><span class="text-[#54595d]">Exam Center:</span> <strong class="text-[#202122]">${d.f2}</strong></div>
                                 <div><span class="text-[#54595d]">Session:</span> <strong class="text-[#202122]">${d.f4}</strong></div>
@@ -802,19 +829,19 @@ sender.send_email(
                 ],
                 render: function(d) {
                     return `
-                        <div class="border border-[#202122] p-5 rounded bg-white font-mono text-xs space-y-3">
-                            <div class="flex justify-between items-center border-b border-[#202122] pb-2">
-                                <div class="font-bold text-xs uppercase text-[#202122]">CORPORATE COMPENSATION STATEMENT</div>
-                                <div class="text-[10px] text-[#54595d]">Confidential HR Record</div>
+                        <div class="border border-[#202122] p-4 sm:p-5 rounded bg-white font-mono text-xs space-y-3">
+                            <div class="flex justify-between items-center border-b border-[#202122] pb-2 gap-2">
+                                <div class="font-bold text-xs uppercase text-[#202122] truncate">COMPENSATION STATEMENT</div>
+                                <div class="text-[10px] text-[#54595d] flex-shrink-0">Confidential HR Record</div>
                             </div>
                             <div class="space-y-1 text-[11px] pt-1">
-                                <div class="flex justify-between"><span class="text-[#54595d]">Employee:</span> <strong class="text-[#202122] font-sans">${d.f1} (${d.f3})</strong></div>
-                                <div class="flex justify-between"><span class="text-[#54595d]">Department:</span> <span>${d.f2}</span></div>
-                                <div class="flex justify-between"><span class="text-[#54595d]">Pay Period:</span> <span>${d.f5}</span></div>
+                                <div class="flex justify-between gap-2"><span class="text-[#54595d]">Employee:</span> <strong class="text-[#202122] font-sans truncate">${d.f1} (${d.f3})</strong></div>
+                                <div class="flex justify-between gap-2"><span class="text-[#54595d]">Department:</span> <span class="truncate">${d.f2}</span></div>
+                                <div class="flex justify-between gap-2"><span class="text-[#54595d]">Pay Period:</span> <span>${d.f5}</span></div>
                             </div>
                             <div class="bg-[#f8f9fa] p-2.5 rounded border border-[#c8ccd1] flex justify-between items-center text-xs font-bold text-[#202122]">
                                 <span>NET DISBURSEMENT:</span>
-                                <span class="text-emerald-800">${d.f4}</span>
+                                <span class="text-emerald-800 font-mono">${d.f4}</span>
                             </div>
                         </div>
                     `;
@@ -829,9 +856,9 @@ sender.send_email(
             currentWikiKey = key;
             currentWikiRow = 0;
 
-            document.getElementById('wTabCert').className = key === 'cert' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
-            document.getElementById('wTabAdmit').className = key === 'admit' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
-            document.getElementById('wTabSalary').className = key === 'salary' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
+            document.getElementById('wTabCert').className = key === 'cert' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition shadow-sm' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
+            document.getElementById('wTabAdmit').className = key === 'admit' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition shadow-sm' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
+            document.getElementById('wTabSalary').className = key === 'salary' ? 'px-2.5 py-1 rounded bg-white text-[#202122] border border-[#a2a9b1] font-semibold transition shadow-sm' : 'px-2.5 py-1 rounded bg-[#eaecf0] hover:bg-white text-[#54595d] border border-[#c8ccd1] transition';
 
             const preset = wikiPresets[key];
             document.getElementById('wDatasetName').innerText = preset.datasetName;
@@ -860,10 +887,10 @@ sender.send_email(
                 tr.onclick = () => loadWikiRecord(idx);
                 tr.innerHTML = `
                     <td class="p-2 text-[#54595d] font-mono">${idx + 1}</td>
-                    <td class="p-2 font-semibold text-[#202122] font-sans">${rec.f1}</td>
-                    <td class="p-2 text-[#54595d]">${rec.f2}</td>
-                    <td class="p-2 text-[#54595d] font-mono">${rec.f3}</td>
-                    <td class="p-2 text-[#202122]">${rec.f4}</td>
+                    <td class="p-2 font-semibold text-[#202122] font-sans whitespace-nowrap">${rec.f1}</td>
+                    <td class="p-2 text-[#54595d] whitespace-nowrap">${rec.f2}</td>
+                    <td class="p-2 text-[#54595d] font-mono whitespace-nowrap">${rec.f3}</td>
+                    <td class="p-2 text-[#202122] whitespace-nowrap font-mono">${rec.f4}</td>
                 `;
                 tbody.appendChild(tr);
             });
