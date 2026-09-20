@@ -4,22 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuMint Automation Studio</title>
+    <title>DocuMint Automation Studio v3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Google Fonts: Inter for UI, Hind Siliguri for Bangla/General -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['"Inter"', '"Hind Siliguri"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
                     },
                     colors: {
-                        slate: { 850: '#151e2e' } // Custom dark slate
+                        slate: { 850: '#151e2e' }
                     }
                 }
             }
@@ -42,13 +41,10 @@
 
         .sidebar-link.active {
             background-color: #eff6ff;
-            /* Blue 50 */
             color: #2563eb;
-            /* Blue 600 */
             border-right: 3px solid #2563eb;
         }
 
-        /* Clean Inputs */
         input:focus,
         select:focus,
         textarea:focus {
@@ -57,22 +53,10 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* Pulse Animation for Running State */
         @keyframes pulse-ring {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
-            }
-
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
-            }
-
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
-            }
+            0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+            100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
         }
 
         .btn-running {
@@ -80,7 +64,6 @@
             background-color: #4f46e5 !important;
         }
 
-        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -89,23 +72,16 @@
             border-radius: 8px;
             color: white;
             font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transform: translateY(100px);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 50;
         }
 
-        .toast.show {
-            transform: translateY(0);
-        }
-
-        .toast.success {
-            background-color: #10b981;
-        }
-
-        .toast.error {
-            background-color: #ef4444;
-        }
+        .toast.show { transform: translateY(0); }
+        .toast.success { background-color: #10b981; }
+        .toast.error { background-color: #ef4444; }
+        .toast.info { background-color: #3b82f6; }
     </style>
 </head>
 
@@ -115,11 +91,11 @@
     <aside class="w-72 bg-white border-r border-slate-200 flex flex-col fixed md:relative h-full z-20">
         <!-- Logo -->
         <div class="h-16 flex items-center px-8 border-b border-slate-100">
-            <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white mr-3">
+            <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white mr-3 shadow-sm">
                 <i class="fa-solid fa-file-contract"></i>
             </div>
             <span class="text-lg font-bold text-slate-900 tracking-tight">DocuMint</span>
-            <span class="ml-2 px-2 py-0.5 rounded-full bg-slate-100 text-xs font-semibold text-slate-500">v2.1</span>
+            <span class="ml-2 px-2 py-0.5 rounded-full bg-blue-100 text-xs font-semibold text-blue-700">v3.0.0</span>
         </div>
 
         <!-- Menu -->
@@ -136,8 +112,7 @@
                 <i class="fa-regular fa-folder-open w-5"></i> Documentation
             </a>
 
-            <div class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 mt-8">Connect & Support
-            </div>
+            <div class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 mt-8">Connect & Support</div>
 
             <!-- Professional Profile Section -->
             <div class="mx-2 p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-4">
@@ -185,14 +160,16 @@
     <main class="flex-1 flex flex-col h-full overflow-hidden bg-slate-50/50">
 
         <!-- Header -->
-        <header
-            class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10 sticky top-0">
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10 sticky top-0">
             <div>
                 <h2 class="text-lg font-bold text-slate-800">Job Configuration</h2>
-                <p class="text-xs text-slate-400">Configure your automated document pipeline.</p>
+                <p class="text-xs text-slate-400">Configure your automated document compilation & dispatch pipeline.</p>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="runJob()"
+                <button id="btnCancel" onclick="stopJob()" class="hidden items-center gap-2 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-lg shadow-sm transition">
+                    <i class="fa-solid fa-ban"></i> Cancel Job
+                </button>
+                <button id="btnRun" onclick="runJob()"
                     class="flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-lg shadow-sm transition transform active:scale-95">
                     <i class="fa-solid fa-rocket"></i> Start Engine
                 </button>
@@ -203,43 +180,45 @@
         <div class="flex-1 overflow-auto p-8">
             <div class="max-w-6xl mx-auto space-y-6">
 
-                <!-- Row 1: Files -->
-                <div
-                    class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
-                    <div class="px-6 py-4 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
+                <!-- Row 1: Files & Profiles -->
+                <div class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-50 flex flex-wrap justify-between items-center bg-slate-50/50 gap-3">
                         <div>
                             <h3 class="font-semibold text-slate-800 flex items-center gap-2">
                                 <i class="fa-solid fa-folder-open text-blue-500"></i> File Resources
                             </h3>
-                            <p class="text-xs text-slate-400 mt-0.5">Link your Excel data and Word templates here.</p>
+                            <p class="text-xs text-slate-400 mt-0.5">Link your spreadsheet data (.xlsx, .csv) and Word template (.docx).</p>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center flex-wrap gap-2.5">
                             <select id="profileSelect" onchange="loadProfile(this.value)"
-                                class="text-xs border border-slate-200 rounded px-2 py-1 outline-none text-slate-600">
+                                class="text-xs border border-slate-200 rounded px-2.5 py-1.5 outline-none text-slate-600 bg-white">
                                 <option value="">Load Profile...</option>
                             </select>
                             <button onclick="saveProfile()"
-                                class="text-xs font-medium text-blue-600 hover:text-blue-800 transition flex items-center gap-1">
+                                class="text-xs font-medium text-blue-600 hover:text-blue-800 transition flex items-center gap-1 bg-blue-50 px-2.5 py-1.5 rounded">
                                 <i class="fa-solid fa-save"></i> Save Profile
                             </button>
+                            <button onclick="deleteProfile()" id="btnDeleteProfile"
+                                class="text-xs font-medium text-rose-600 hover:text-rose-800 transition flex items-center gap-1 bg-rose-50 px-2.5 py-1.5 rounded"
+                                title="Delete active profile">
+                                <i class="fa-solid fa-trash-can"></i> Delete
+                            </button>
                             <button onclick="validateFiles()"
-                                class="text-xs font-medium text-slate-500 hover:text-blue-600 transition flex items-center gap-1 border-l border-slate-200 pl-3"
+                                class="text-xs font-medium text-slate-700 hover:text-blue-600 transition flex items-center gap-1 border border-slate-200 bg-white px-3 py-1.5 rounded"
                                 title="Checks if your Excel columns match the <Values> in your Word Doc.">
-                                <i class="fa-solid fa-check-circle"></i> Check Integrity
+                                <i class="fa-solid fa-check-circle text-emerald-600"></i> Check Integrity
                             </button>
                         </div>
                     </div>
                     <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Excel Data
-                                Path</label>
-                            <input type="text" id="dataPath" placeholder="D:\Files\data.xlsx"
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Dataset Path (.xlsx / .csv)</label>
+                            <input type="text" id="dataPath" placeholder="E:\Development\DocuMint\examples\student_data.xlsx"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Word Template
-                                Path</label>
-                            <input type="text" id="templatePath" placeholder="D:\Files\template.docx"
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Word Template Path (.docx)</label>
+                            <input type="text" id="templatePath" placeholder="E:\Development\DocuMint\examples\admit_card_template.docx"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition">
                         </div>
                     </div>
@@ -249,10 +228,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                     <!-- Editor (2 cols) -->
-                    <div
-                        class="lg:col-span-2 bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 flex flex-col h-[500px]">
-                        <div
-                            class="px-6 py-3 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
+                    <div class="lg:col-span-2 bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 flex flex-col h-[520px]">
+                        <div class="px-6 py-3 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
                             <h3 class="font-semibold text-slate-800 flex items-center gap-2">
                                 <i class="fa-solid fa-envelope text-indigo-500"></i> Email Composer
                             </h3>
@@ -267,17 +244,16 @@
                         <div class="flex-1 relative">
                             <!-- Edit Mode -->
                             <div id="editPane" class="absolute inset-0 p-6 flex flex-col gap-4">
-                                <input type="text" id="subject" placeholder="Subject: Official Admit Card"
-                                    class="text-lg font-medium text-slate-800 border-b border-slate-100 pb-2 placeholder-slate-300 focus:border-blue-500 transition outline-none">
+                                <input type="text" id="subject" placeholder="Subject: Official Admit Card for <Name>"
+                                    class="text-base font-medium text-slate-800 border-b border-slate-100 pb-2 placeholder-slate-300 focus:border-blue-500 transition outline-none">
                                 <textarea id="body" oninput="updatePreview()"
-                                    class="flex-1 resize-none bg-slate-50 border border-slate-100 rounded-lg p-4 font-mono text-sm text-slate-700 outline-none focus:ring-2 focus:ring-blue-500/20 transition"
-                                    placeholder="<html><body>Write your message here...</body></html>"></textarea>
+                                    class="flex-1 resize-none bg-slate-50 border border-slate-100 rounded-lg p-4 font-mono text-xs text-slate-700 outline-none focus:ring-2 focus:ring-blue-500/20 transition"
+                                    placeholder="<html><body><p>Dear &lt;Name&gt;,</p><p>Your admit card is attached.</p></body></html>"></textarea>
                             </div>
 
                             <!-- Preview Mode -->
                             <div id="prevPane" class="absolute inset-0 bg-slate-100 hidden flex flex-col">
-                                <div
-                                    class="px-4 py-2 bg-white border-b border-slate-200 text-xs text-slate-400 flex justify-between">
+                                <div class="px-4 py-2 bg-white border-b border-slate-200 text-xs text-slate-400 flex justify-between">
                                     <span>To: Recipient</span>
                                     <span id="prevSubject">Subject: ...</span>
                                 </div>
@@ -288,49 +264,63 @@
 
                     <!-- Config (1 col) -->
                     <div class="space-y-6">
-                        <div
-                            class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
-                            <div class="px-6 py-4 border-b border-slate-50 bg-slate-50/50">
-                                <h3 class="font-semibold text-slate-800 text-sm">Target Folders</h3>
+                        <div class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
+                            <div class="px-6 py-3 border-b border-slate-50 bg-slate-50/50">
+                                <h3 class="font-semibold text-slate-800 text-sm">Execution Controls</h3>
                             </div>
-                            <div class="p-4 space-y-4">
+                            <div class="p-4 space-y-3 text-xs">
                                 <div>
-                                    <label class="text-xs text-slate-400 font-medium ml-1">PDF Output</label>
-                                    <input type="text" id="pdfFolder" placeholder="D:\Output"
-                                        class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700">
+                                    <label class="text-xs text-slate-500 font-medium ml-1">PDF Output Folder</label>
+                                    <input type="text" id="pdfFolder" value="./output/pdf"
+                                        class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-500 font-medium ml-1">PDF Filename Format</label>
+                                    <input type="text" id="filenameFormat" value="Admit_{<Name>}"
+                                        class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700">
+                                </div>
+                                <div class="pt-2 border-t border-slate-100 space-y-2">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" id="chkDryRun" class="rounded text-blue-600 focus:ring-0">
+                                        <span class="font-semibold text-slate-700">Dry Run (Compile PDFs Only)</span>
+                                    </label>
+                                    <div>
+                                        <label class="text-[11px] text-slate-500 font-medium">Single Test Recipient (Optional)</label>
+                                        <input type="email" id="testEmail" placeholder="test@example.com"
+                                            class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div
-                            class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
-                            <div class="px-6 py-4 border-b border-slate-50 bg-slate-50/50">
-                                <h3 class="font-semibold text-slate-800 text-sm">SMTP Gateway</h3>
+                        <div class="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden">
+                            <div class="px-6 py-3 border-b border-slate-50 bg-slate-50/50">
+                                <h3 class="font-semibold text-slate-800 text-sm">Dispatch Gateway</h3>
                             </div>
                             <div class="p-4 space-y-3">
                                 <select id="provider" onchange="toggleSMTP()"
-                                    class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 outline-none">
                                     <option value="smtp">Custom SMTP (High Speed - 5x Threads)</option>
-                                    <option value="outlook">Outlook App (Safe Mode - Uses Desktop App)</option>
+                                    <option value="outlook">Outlook App (Safe Mode - Desktop App)</option>
                                 </select>
-                                <p class="text-[10px] text-slate-400 px-1">
-                                    <b>Custom SMTP</b> is faster but requires specific credentials.<br>
-                                    <b>Outlook</b> uses your open Outlook app but is slower.
-                                </p>
 
-                                <div id="smtpFields" class="space-y-3">
-                                    <input type="text" id="host" value="smtp.gmail.com"
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700">
-                                    <input type="text" id="user" placeholder="Email"
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700">
+                                <div id="smtpFields" class="space-y-2.5">
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <input type="text" id="host" value="smtp.gmail.com" placeholder="Host"
+                                            class="col-span-2 w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700">
+                                        <input type="number" id="port" value="587" placeholder="Port"
+                                            class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700">
+                                    </div>
+                                    <input type="text" id="user" placeholder="SMTP Username / Email"
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700">
                                     <input type="password" id="pass" placeholder="App Password"
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700">
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700">
                                 </div>
 
                                 <div id="outlookMsg"
                                     class="hidden text-xs text-slate-500 bg-blue-50 p-3 rounded-lg border border-blue-100">
                                     <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i>
-                                    Uses your local Outlook program. No password required.
+                                    Uses your local classic Outlook program. No password required.
                                 </div>
                             </div>
                         </div>
@@ -340,59 +330,58 @@
 
                 <!-- Terminal & Analytics -->
                 <div class="bg-slate-900 rounded-xl shadow-lg border border-slate-800 overflow-hidden relative">
-                    <div class="px-4 py-2 border-b border-slate-800 bg-slate-950 flex justify-between items-center">
+                    <div class="px-4 py-2.5 border-b border-slate-800 bg-slate-950 flex justify-between items-center">
                         <div class="flex gap-4">
                             <button onclick="toggleLogs('console')" id="btnConsole"
-                                class="text-xs font-mono font-bold text-white uppercase border-b-2 border-blue-500 pb-0.5">System
-                                Logs</button>
+                                class="text-xs font-mono font-bold text-white uppercase border-b-2 border-blue-500 pb-0.5">System Logs</button>
                             <button onclick="toggleLogs('analytics')" id="btnAnalytics"
-                                class="text-xs font-mono font-bold text-slate-500 uppercase pb-0.5 hover:text-slate-300">Analytics</button>
+                                class="text-xs font-mono font-bold text-slate-500 uppercase pb-0.5 hover:text-slate-300">Analytics & Audit</button>
                         </div>
-                        <div class="flex gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-slate-800"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-slate-800"></span>
+                        <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                            <span id="pipelineStatusBadge" class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span id="pipelineStatusText">Ready</span>
                         </div>
                     </div>
 
                     <!-- Console View -->
-                    <div id="console" class="p-4 h-48 overflow-y-auto font-mono text-xs space-y-1 text-slate-400">
-                        <div class="text-slate-600"># System Ready...</div>
+                    <div id="console" class="p-4 h-56 overflow-y-auto font-mono text-xs space-y-1 text-slate-400">
+                        <div class="text-slate-600"># DocuMint v3.0 Engine Initialized. Ready for batch dispatch.</div>
                     </div>
 
                     <!-- Analytics View -->
-                    <div id="analytics" class="hidden p-4 h-48 overflow-y-auto bg-slate-900">
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="bg-slate-800 p-3 rounded border border-slate-700 relative overflow-hidden">
-                                <div class="text-slate-400 text-xs uppercase mb-1 z-10 relative">Total Jobs</div>
-                                <div class="text-3xl font-bold text-white z-10 relative" id="statTotalJobs">-</div>
-                                <i
-                                    class="fa-solid fa-layer-group absolute right-3 bottom-3 text-slate-700 text-4xl opacity-50"></i>
+                    <div id="analytics" class="hidden p-4 h-56 overflow-y-auto bg-slate-900">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <div class="text-slate-400 text-[10px] uppercase font-mono mb-0.5">Total Batches</div>
+                                <div class="text-2xl font-bold text-white font-mono" id="statTotalJobs">0</div>
                             </div>
-                            <div class="bg-slate-800 p-3 rounded border border-slate-700 relative overflow-hidden">
-                                <div class="text-slate-400 text-xs uppercase mb-1 z-10 relative">Success Rate</div>
-                                <div class="flex items-end gap-2">
-                                    <div class="text-3xl font-bold text-emerald-400 z-10 relative" id="statSuccessRate">
-                                        -%</div>
-                                    <div class="text-xs text-slate-500 mb-1.5 z-10 relative">AVG</div>
-                                </div>
-                                <!-- CSS Mini Chart -->
-                                <div class="h-1.5 w-full bg-slate-700 mt-2 rounded-full overflow-hidden">
-                                    <div id="successBar" class="h-full bg-emerald-500 transition-all duration-1000"
-                                        style="width: 0%"></div>
-                                </div>
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <div class="text-slate-400 text-[10px] uppercase font-mono mb-0.5">Total Docs</div>
+                                <div class="text-2xl font-bold text-blue-400 font-mono" id="statTotalEmails">0</div>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <div class="text-slate-400 text-[10px] uppercase font-mono mb-0.5">Success Rate</div>
+                                <div class="text-2xl font-bold text-emerald-400 font-mono" id="statSuccessRate">100%</div>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <div class="text-slate-400 text-[10px] uppercase font-mono mb-0.5">Failed Items</div>
+                                <div class="text-2xl font-bold text-rose-400 font-mono" id="statTotalFailed">0</div>
                             </div>
                         </div>
-                        <table class="w-full text-left text-xs text-slate-400">
-                            <thead class="text-slate-500 border-b border-slate-700">
+
+                        <div class="text-xs font-bold text-slate-300 mb-2 font-mono">Recent Batch Jobs</div>
+                        <table class="w-full text-left text-xs text-slate-400 mb-4">
+                            <thead class="text-slate-500 border-b border-slate-700 font-mono text-[11px]">
                                 <tr>
-                                    <th class="pb-2">Time</th>
-                                    <th class="pb-2">Mode</th>
-                                    <th class="pb-2 text-right">Sent</th>
-                                    <th class="pb-2 text-right">Success</th>
+                                    <th class="pb-1">Timestamp</th>
+                                    <th class="pb-1">Mode</th>
+                                    <th class="pb-1 text-right">Items</th>
+                                    <th class="pb-1 text-right">Success</th>
+                                    <th class="pb-1 text-right">Failed</th>
                                 </tr>
                             </thead>
-                            <tbody id="statTable" class="font-mono">
-                                <!-- Rows injected by JS -->
+                            <tbody id="statTable" class="font-mono divide-y divide-slate-800 text-[11.5px]">
+                                <!-- Injected by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -404,6 +393,8 @@
     </main>
 
     <script>
+        let pollInterval = null;
+
         function toggleSMTP() {
             const provider = document.getElementById('provider').value;
             const fields = document.getElementById('smtpFields');
@@ -449,19 +440,19 @@
             const doc = iframe.contentDocument || iframe.contentWindow.document;
             document.getElementById('prevSubject').innerText = "Subject: " + (sub || "...");
             doc.open();
-            doc.write(body || "<div style='font-family:sans-serif; text-align:center; padding:50px; color:#94a3b8;'>Preview Area</div>");
+            doc.write(body || "<div style='font-family:sans-serif; text-align:center; padding:50px; color:#94a3b8;'>Live Email Preview</div>");
             doc.close();
         }
 
         function log(msg, type = 'info') {
             const c = document.getElementById('console');
-            let color = type === 'error' ? 'text-red-400' : (type === 'success' ? 'text-green-400' : 'text-slate-300');
+            let color = type === 'error' ? 'text-red-400' : (type === 'success' ? 'text-emerald-400' : 'text-slate-300');
             c.innerHTML += `<div class="${color}">> ${msg}</div>`;
             c.scrollTop = c.scrollHeight;
         }
 
         async function validateFiles() {
-            log("Running pre-flight checks...", 'info');
+            log("Running pre-flight schema checks...", 'info');
             try {
                 const res = await fetch('/api/validate', {
                     method: 'POST',
@@ -473,17 +464,20 @@
                 });
                 const data = await res.json();
                 if (data.valid) {
-                    log("Integrity Check Passed.", 'success');
-                    showToast("Files Validated Successfully", 'success');
+                    log("✅ Integrity Check Passed: All template placeholders matched dataset columns.", 'success');
+                    showToast("Schema Validated Successfully", 'success');
                 } else {
-                    log("Integrity Check Failed: " + JSON.stringify(data.missing || data.error), 'error');
-                    showToast("Validation Failed", 'error');
+                    log("❌ Integrity Check Failed: " + JSON.stringify(data.missing || data.error), 'error');
+                    showToast("Validation Failed: Check Logs", 'error');
                 }
             } catch (e) { log("Connection Error: " + e, 'error'); }
         }
 
         async function runJob() {
-            log("Initializing Engine...", 'info');
+            log("Initializing Batch Pipeline Engine...", 'info');
+            const isDryRun = document.getElementById('chkDryRun').checked;
+            const testEmail = document.getElementById('testEmail').value.trim();
+
             const payload = {
                 data_path: document.getElementById('dataPath').value,
                 template_path: document.getElementById('templatePath').value,
@@ -491,22 +485,30 @@
                 logs_folder: document.getElementById('pdfFolder').value,
                 subject: document.getElementById('subject').value,
                 body: document.getElementById('body').value,
-                filename_format: "Admit_{<ID>}",
+                filename_format: document.getElementById('filenameFormat').value,
                 retries: 2,
-                delay: 2,
+                delay: 1,
+                dry_run: isDryRun,
+                test_email: testEmail || null,
                 email_config: {
                     provider: document.getElementById('provider').value,
                     smtp_host: document.getElementById('host').value,
-                    smtp_port: 465,
+                    smtp_port: parseInt(document.getElementById('port').value || 587),
                     smtp_user: document.getElementById('user').value,
                     smtp_password: document.getElementById('pass').value
                 }
             };
 
             try {
-                const btn = document.querySelector('button[onclick="runJob()"]');
-                btn.classList.add('btn-running');
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Running...';
+                const btnRun = document.getElementById('btnRun');
+                const btnCancel = document.getElementById('btnCancel');
+                btnRun.classList.add('btn-running');
+                btnRun.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+                btnCancel.classList.remove('hidden');
+                btnCancel.classList.add('flex');
+
+                document.getElementById('pipelineStatusText').innerText = "Running";
+                document.getElementById('pipelineStatusBadge').className = "inline-block w-2 h-2 rounded-full bg-blue-400 animate-ping";
 
                 const res = await fetch('/api/run', {
                     method: 'POST',
@@ -517,28 +519,61 @@
 
                 if (result.status === 'error') {
                     log(result.message, 'error');
-                    btn.classList.remove('btn-running');
-                    btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Start Engine';
+                    resetRunButton();
                     return;
                 }
                 log(result.message, 'success');
 
-                const poller = setInterval(async () => {
-                    const s = await fetch('/api/status');
-                    const stat = await s.json();
-                    // ... (rest of polling)
-                    if (!stat.is_running) {
-                        clearInterval(poller);
-                        log("Job Finished.", 'info');
-                        btn.classList.remove('btn-running');
-                        btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Start Engine';
-                        showToast("Job Completed Successfully", 'success');
+                let lastLogCount = 0;
+                pollInterval = setInterval(async () => {
+                    try {
+                        const s = await fetch('/api/status');
+                        const stat = await s.json();
+                        
+                        if (stat.logs && stat.logs.length > lastLogCount) {
+                            for (let i = lastLogCount; i < stat.logs.length; i++) {
+                                log(stat.logs[i]);
+                            }
+                            lastLogCount = stat.logs.length;
+                        }
+
+                        if (!stat.is_running) {
+                            clearInterval(pollInterval);
+                            resetRunButton();
+                            showToast("Batch Execution Finished", 'success');
+                            loadAnalytics();
+                        }
+                    } catch (err) {
+                        console.error("Polling error:", err);
                     }
-                }, 1000);
+                }, 800);
 
             } catch (e) {
-                log("Critical Error: " + e, 'error');
+                log("Critical Execution Error: " + e, 'error');
+                resetRunButton();
             }
+        }
+
+        async function stopJob() {
+            try {
+                const res = await fetch('/api/stop', { method: 'POST' });
+                const data = await res.json();
+                log(data.message, 'error');
+                showToast("Abort Signal Sent", 'info');
+            } catch (e) {
+                log("Error stopping job: " + e, 'error');
+            }
+        }
+
+        function resetRunButton() {
+            const btnRun = document.getElementById('btnRun');
+            const btnCancel = document.getElementById('btnCancel');
+            btnRun.classList.remove('btn-running');
+            btnRun.innerHTML = '<i class="fa-solid fa-rocket"></i> Start Engine';
+            btnCancel.classList.add('hidden');
+            btnCancel.classList.remove('flex');
+            document.getElementById('pipelineStatusText').innerText = "Ready";
+            document.getElementById('pipelineStatusBadge').className = "inline-block w-2 h-2 rounded-full bg-emerald-500";
         }
 
         // --- Profile Management ---
@@ -554,21 +589,22 @@
             } catch (e) { console.error(e); }
         }
 
-        // Load profiles on startup
         fetchProfiles();
 
         async function saveProfile() {
-            const name = prompt("Enter profile name (e.g., 'Student Cards'):");
+            const name = prompt("Enter profile name (e.g., 'Student Admit Cards'):");
             if (!name) return;
 
             const config = {
                 data_path: document.getElementById('dataPath').value,
                 template_path: document.getElementById('templatePath').value,
                 pdf_folder: document.getElementById('pdfFolder').value,
+                filename_format: document.getElementById('filenameFormat').value,
                 subject: document.getElementById('subject').value,
                 body: document.getElementById('body').value,
                 provider: document.getElementById('provider').value,
                 smtp_host: document.getElementById('host').value,
+                smtp_port: document.getElementById('port').value,
                 smtp_user: document.getElementById('user').value,
                 smtp_pass: document.getElementById('pass').value
             };
@@ -581,8 +617,8 @@
                 });
                 const data = await res.json();
                 if (data.status === 'success') {
-                    alert('Profile Saved!');
-                    fetchProfiles(); // Refresh list
+                    showToast(`Profile '${name}' Saved`, 'success');
+                    fetchProfiles();
                 } else {
                     alert('Error: ' + data.error);
                 }
@@ -597,7 +633,8 @@
 
                 document.getElementById('dataPath').value = config.data_path || "";
                 document.getElementById('templatePath').value = config.template_path || "";
-                document.getElementById('pdfFolder').value = config.pdf_folder || "";
+                document.getElementById('pdfFolder').value = config.pdf_folder || "./output/pdf";
+                document.getElementById('filenameFormat').value = config.filename_format || "Admit_{<Name>}";
                 document.getElementById('subject').value = config.subject || "";
                 document.getElementById('body').value = config.body || "";
 
@@ -606,14 +643,39 @@
                     toggleSMTP();
                 }
 
-                document.getElementById('host').value = config.smtp_host || "";
+                document.getElementById('host').value = config.smtp_host || "smtp.gmail.com";
+                document.getElementById('port').value = config.smtp_port || "587";
                 document.getElementById('user').value = config.smtp_user || "";
                 document.getElementById('pass').value = config.smtp_pass || "";
 
-                log(`Loaded profile: ${filename}`, 'info');
+                log(`Loaded profile configuration: ${filename}`, 'info');
+                showToast(`Loaded ${filename}`, 'info');
                 updatePreview();
 
             } catch (e) { log('Load Failed: ' + e, 'error'); }
+        }
+
+        async function deleteProfile() {
+            const sel = document.getElementById('profileSelect');
+            const filename = sel.value;
+            if (!filename) {
+                alert("Please select a profile from the dropdown first.");
+                return;
+            }
+            if (!confirm(`Are you sure you want to delete profile '${filename}'?`)) return;
+
+            try {
+                const res = await fetch('/api/profiles/' + filename, { method: 'DELETE' });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    showToast(`Profile deleted`, 'success');
+                    fetchProfiles();
+                } else {
+                    alert("Error: " + data.error);
+                }
+            } catch (e) {
+                alert("Delete Failed: " + e);
+            }
         }
 
         // --- Analytics ---
@@ -627,7 +689,7 @@
                 consoleDiv.classList.remove('hidden');
                 analyticsDiv.classList.add('hidden');
                 btnConsole.classList.add('text-white', 'border-blue-500');
-                btnConsole.classList.remove('text-slate-500', 'border-transparent');
+                btnConsole.classList.remove('text-slate-500');
                 btnAnalytics.classList.add('text-slate-500');
                 btnAnalytics.classList.remove('text-white', 'border-blue-500');
             } else {
@@ -646,36 +708,30 @@
                 const res = await fetch('/api/stats');
                 const data = await res.json();
 
-                document.getElementById('statTotalJobs').innerText = data.summary.total_jobs || 0;
-
-                // Calculate Success Rate
-                const total = data.summary.total_emails || 1; // avoid /0
-                // We don't have explicit failure count in summary yet, need to update backend or estimate from logs?
-                // For now, let's assume if it ran, it succeeded unless marked otherwise.
-                // Better approach: Count 'success' in history table loop.
-                let successCount = 0;
-                let itemTotal = 0;
-                data.recent.forEach(j => {
-                    successCount += j.success_count;
-                    itemTotal += j.total_items;
-                });
-                const rate = itemTotal === 0 ? 0 : Math.round((successCount / itemTotal) * 100);
-
-                document.getElementById('statSuccessRate').innerText = rate + "%";
-                document.getElementById('successBar').style.width = rate + "%";
+                const summary = data.summary || {};
+                document.getElementById('statTotalJobs').innerText = summary.total_jobs || 0;
+                document.getElementById('statTotalEmails').innerText = summary.total_emails || 0;
+                document.getElementById('statTotalFailed').innerText = summary.total_failed || 0;
+                document.getElementById('statSuccessRate').innerText = (summary.success_rate || 100) + "%";
 
                 const table = document.getElementById('statTable');
                 table.innerHTML = "";
+                if (!data.recent || data.recent.length === 0) {
+                    table.innerHTML = '<tr><td colspan="5" class="py-3 text-center text-slate-600">No batch runs recorded yet.</td></tr>';
+                    return;
+                }
+
                 data.recent.forEach(job => {
                     const date = new Date(job.timestamp).toLocaleString();
                     table.innerHTML += `
-                                <tr class="border-b border-slate-800 last:border-0 hover:bg-slate-800/50">
-                                    <td class="py-2 text-slate-500">${date.split(',')[1]}</td>
-                                    <td class="py-2">${job.mode}</td>
-                                    <td class="py-2 text-right">${job.total_items}</td>
-                                    <td class="py-2 text-right text-emerald-400">${job.success_count}</td>
-                                </tr>
-                            `;
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2 text-slate-400">${date}</td>
+                            <td class="py-2 text-slate-300 font-semibold">${job.mode}</td>
+                            <td class="py-2 text-right">${job.total_items}</td>
+                            <td class="py-2 text-right text-emerald-400 font-bold">${job.success_count}</td>
+                            <td class="py-2 text-right text-rose-400 font-bold">${job.fail_count}</td>
+                        </tr>
+                    `;
                 });
             } catch (e) {
                 console.error("Stats Error:", e);
@@ -683,7 +739,7 @@
         }
 
         // --- Toast System ---
-        function showToast(msg, type) {
+        function showToast(msg, type = 'info') {
             let t = document.getElementById('toast');
             if (!t) {
                 t = document.createElement('div');
@@ -692,15 +748,9 @@
                 document.body.appendChild(t);
             }
             t.className = `toast show ${type}`;
-            t.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-triangle-exclamation'} mr-2"></i> ${msg}`;
-            setTimeout(() => t.className = 'toast', 3000);
+            t.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-check' : (type === 'error' ? 'fa-triangle-exclamation' : 'fa-circle-info')} mr-2"></i> ${msg}`;
+            setTimeout(() => t.className = 'toast', 3500);
         }
-
-        // Hook Toast into Validate
-        // ... inside validateFiles ...
-        // if (data.valid) showToast("Integrity Check Passed", 'success');
-        // else showToast("Integrity Check Failed", 'error');
-
     </script>
 </body>
 
